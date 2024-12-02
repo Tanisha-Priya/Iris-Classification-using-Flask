@@ -1,18 +1,15 @@
 import pandas as pd
+from sklearn import datasets
+import joblib 
 
-# read data
-df = pd.read_csv("D:/Datasets/iris.csv")
-print(df.head())
+df = datasets.load_iris()
+
+y  = df.target
+
+df = pd.DataFrame(data = df.data,columns = df.feature_names)
 
 # Feature matrix
-X = df.iloc[:, :-1].values
-print(X.shape)
-print(X[:3])
-
-# Output variable
-y = df.iloc[:, -1]
-print(y.shape)
-print(y[:6])
+X = df
 
 # Label encoder
 from sklearn.preprocessing import LabelEncoder
@@ -20,10 +17,8 @@ from sklearn.preprocessing import LabelEncoder
 encoder = LabelEncoder()
 y = encoder.fit_transform(y)
 
-print(y[:3])
-# [0 0 0]
-
-import joblib
+# file_name ='02.iris_label_encoder.sav'
+# pickle.dump(encoder, open(file_name,'wb'))
 
 joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
 
@@ -49,10 +44,16 @@ print("Accuracy: % {:10.2f}".format(accuracy * 100))
 import joblib
 joblib.dump(classifier, "saved_models/01.knn_with_iris_dataset.pkl")
 
+# file_name_classifier ='01.knn_with_iris_dataset.sav'
+# pickle.dump(classifier, open(file_name_classifier,'wb'))
+
 # make predictions
 # Read models
 classifier_loaded = joblib.load("saved_models/01.knn_with_iris_dataset.pkl")
 encoder_loaded = joblib.load("saved_models/02.iris_label_encoder.pkl")
+
+# encoder_loaded = pickle.load(open(file_name,'rb'))
+# classifier_loaded = pickle.load(open(file_name_classifier,'rb'))
 
 # Prediction set
 X_manual_test = [[4.0, 4.0, 4.0, 4.0]]
