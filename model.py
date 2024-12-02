@@ -21,7 +21,7 @@ y = encoder.fit_transform(y)
 # pickle.dump(encoder, open(file_name,'wb'))
 import os
 current = os.getcwd()
-project = os.listdir()
+project = os.listdir()[0]
 request_path = os.path.join(current, project)
 print(request_path)
 print(os.listdir())
