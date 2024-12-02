@@ -21,7 +21,7 @@ y = encoder.fit_transform(y)
 # pickle.dump(encoder, open(file_name,'wb'))
 import os
 print(os.getcwd())
-print(os.listdir()
+print(os.listdir())
 joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
 
 # split test train
