@@ -20,7 +20,10 @@ y = encoder.fit_transform(y)
 # file_name ='02.iris_label_encoder.sav'
 # pickle.dump(encoder, open(file_name,'wb'))
 import os
-print(os.getcwd())
+current = os.getcwd()
+project = os.listdir()
+request_path = os.path.join(current, project)
+print(request_path)
 print(os.listdir())
 joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
 
