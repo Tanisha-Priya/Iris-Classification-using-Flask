@@ -23,9 +23,10 @@ import os
 current = os.getcwd()
 project = os.listdir()[0]
 request_path = os.path.join(current, project)
+os.chdir(request_path)
 print(request_path)
 print(os.listdir())
-joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
+joblib.dump(encoder, os.path.join(os.getcwd(),"saved_models/02.iris_label_encoder.pkl"))
 
 # split test train
 from sklearn.model_selection import train_test_split
