@@ -1,6 +1,9 @@
 import pandas as pd
 from sklearn import datasets
 import joblib 
+import os
+current = os.getcwd()
+project = os.listdir()[0]
 
 df = datasets.load_iris()
 
@@ -19,9 +22,7 @@ y = encoder.fit_transform(y)
 
 # file_name ='02.iris_label_encoder.sav'
 # pickle.dump(encoder, open(file_name,'wb'))
-import os
-current = os.getcwd()
-project = os.listdir()[0]
+
 request_path = os.path.join(current, project)
 os.chdir(request_path)
 joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
