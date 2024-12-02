@@ -3,10 +3,13 @@ from flask import Flask, request, jsonify, session, url_for, redirect, render_te
 from flower_form import FlowerForm
 import pandas as pd
 import joblib 
-
-import pandas as pd
 from sklearn import datasets
-import joblib 
+
+import os
+current = os.getcwd()
+project = os.listdir()[0]
+request_path = os.path.join(current, project)
+os.chdir(request_path)
 
 df = datasets.load_iris()
 
