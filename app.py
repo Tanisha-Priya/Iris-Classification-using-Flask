@@ -4,6 +4,9 @@ from flower_form import FlowerForm
 import pandas as pd
 import joblib 
 from sklearn import datasets
+from prometheus_client import start_http_server, Gauge
+
+accuracy_gauge = Gauge('model_accuracy_ratio', 'Accuracy ratio of the model')
 
 import os
 current = os.getcwd()
@@ -119,10 +122,17 @@ def prediction():
                'PetalLengthCm': float(session['PetalLengthCm']), 'PetalWidthCm': float(session['PetalWidthCm'])}
 
     results = make_prediction(classifier_loaded, encoder_loaded, content)
-
+        
+    accuracy_gauge.set(0.8)
+    
     return render_template('prediction.html', results=results)
 
+@app.route('/metrics')
+def metrics():
+    from prometheus_client import generate_latest
+    return generate_latest()
+    
 print("---------------PORT SUCCESS----------------")
 if __name__ == '__main__':
+    start_http_server(8000)  # Exposes /metrics at port 8000
     app.run(host='0.0.0.0')
-    #app.run()
