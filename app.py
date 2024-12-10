@@ -4,9 +4,9 @@ from flower_form import FlowerForm
 import pandas as pd
 import joblib 
 from sklearn import datasets
-#from prometheus_client import start_http_server, Gauge
+from prometheus_client import start_http_server, Gauge
 
-#accuracy_gauge = Gauge('model_accuracy_ratio', 'Accuracy ratio of the model')
+accuracy_gauge = Gauge('model_accuracy_ratio', 'Accuracy ratio of the model')
 
 df = datasets.load_iris()
 
@@ -23,8 +23,6 @@ from sklearn.preprocessing import LabelEncoder
 encoder = LabelEncoder()
 y = encoder.fit_transform(y)
 
-# file_name ='02.iris_label_encoder.sav'
-# pickle.dump(encoder, open(file_name,'wb'))
 
 joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
 
@@ -121,13 +119,13 @@ def prediction():
 
     return render_template('prediction.html', results=results)
 
-#@app.route('/metrics')
-#def metrics():
-#    from prometheus_client import generate_latest
-#    return generate_latest()
+@app.route('/metrics')
+def metrics():
+    from prometheus_client import generate_latest
+    return generate_latest()
 
 print("---------------PREDICT---PORT SUCCESS----------------")
 if __name__ == '__main__':
-    #start_http_server(8000)  # Exposes /metrics at port 8000
+    start_http_server(8000)  # Exposes /metrics at port 8000
     app.run(host='0.0.0.0', port=8080)
     #app.run()
