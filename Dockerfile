@@ -1,7 +1,6 @@
 FROM python:3.6-slim
 COPY requirements.txt requirements.txt
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --proxy http://proxy365.sacombank.com:1985 -rrequirements.txt
 COPY . /opt/
 WORKDIR /opt
 EXPOSE 8080 8000
