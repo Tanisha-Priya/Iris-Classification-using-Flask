@@ -4,6 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/name: var_name_build
   name: var_name_build 
+  namespace: mlrun
 spec:
   output:
     to:
