@@ -1,0 +1,25 @@
+apiVersion: build.OpenShift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app.kubernetes.io/name: var_name_build
+  name: var_name_build 
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: '192.168.117.185:8087/mlops/tf/mlops/tf/fianl_1:latest'
+  source:
+    type: Binary
+    binary: {}
+  resource:
+    limits:
+      cpu: '1'
+      memory: 1Gi
+    requests:
+      cpu: '1'
+      memory: 1Gi
+strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
