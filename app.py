@@ -105,5 +105,5 @@ def metrics():
 
 print("---------------PREDICT---PORT SUCCESS----------------")
 if __name__ == '__main__':
-    start_http_server(8000) 
-    app.run(host='0.0.0.0', port=8080)
+    #start_http_server(8000) 
+    app.run(host='0.0.0.0')
