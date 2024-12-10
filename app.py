@@ -23,7 +23,8 @@ from sklearn.preprocessing import LabelEncoder
 encoder = LabelEncoder()
 y = encoder.fit_transform(y)
 
-
+import os
+print(os.getcwd())
 joblib.dump(encoder, "saved_models/02.iris_label_encoder.pkl")
 
 # split test train
