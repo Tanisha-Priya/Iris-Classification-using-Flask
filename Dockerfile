@@ -5,5 +5,4 @@ RUN pip install -r requirements.txt
 COPY . /opt/
 WORKDIR /opt
 EXPOSE 8080
-EXPOSE 8090  # Expose the Prometheus metrics port
-ENTRYPOINT FLASK_APP=app.py flask run --host=0.0.0.0 --port=8080
+CMD  ["python","app.py"]
