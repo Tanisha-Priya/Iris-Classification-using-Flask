@@ -1,7 +1,7 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: var_name_build 
+  name: blue-api 
   namespace: mlrun
 spec:
   output:
