@@ -1,8 +1,6 @@
-apiVersion: build.OpenShift.io/v1
 kind: BuildConfig
+apiVersion: build.openshift.io/v1
 metadata:
-  labels:
-    app.kubernetes.io/name: var_name_build
   name: var_name_build 
   namespace: mlrun
 spec:
@@ -20,7 +18,7 @@ spec:
     requests:
       cpu: '1'
       memory: 1Gi
-strategy:
+  strategy:
     type: Docker
     dockerStrategy:
       dockerfilePath: Dockerfile
