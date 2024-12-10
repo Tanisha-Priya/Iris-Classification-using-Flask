@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-api
+  namespace: mlrun
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-api
+  template:
+    metadata:
+      labels:
+        app: blue-api
+    spec:
+      containers:
+        - name: blue-api
+          image: 192.168.117.185:8087/mlops/tf/mlops/tf/fianl_1:latest # Match the output of your BuildConfig
+          ports:
+            - containerPort: 5000  # Flask app default port (adjust if different)
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: "1"
+              memory: 1Gi
+          env:
+            - name: FLASK_ENV
+              value: production # Environment variable for Flask (optional)
+            - name: PROMETHEUS_PORT
+              value: "8000"     # Environment variable for Prometheus metrics
+
+---
+
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: blue-api 
+  namespace: mlrun
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: '192.168.117.185:8087/mlops/tf/mlops/tf/fianl_1:latest'
+  source:
+    type: Binary
+    binary: {}
+  resource:
+    limits:
+      cpu: '1'
+      memory: 1Gi
+    requests:
+      cpu: '1'
+      memory: 1Gi
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
