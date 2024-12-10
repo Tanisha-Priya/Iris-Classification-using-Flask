@@ -5,4 +5,4 @@ COPY . /opt/
 WORKDIR /opt
 EXPOSE 8080 8000
 ENV FLASK_APP=app.py
-CMD ["python", './app.py','--host=0.0.0.0]
+CMD ['python', './app.py','--host=0.0.0.0']
