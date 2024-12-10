@@ -25,11 +25,6 @@ spec:
             requests:
               cpu: "1"
               memory: 1Gi
-          env:
-            - name: FLASK_ENV
-              value: production # Environment variable for Flask (optional)
-            - name: PROMETHEUS_PORT
-              value: "8000"     # Environment variable for Prometheus metrics
 
 ---
 
