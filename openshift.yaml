@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: blue-api
-          image: 192.168.117.185:8087/mlops/tf/mlops/tf/fianl_1:latest # Match the output of your BuildConfig
+          image: 192.168.117.185:8087/mlops/tf/final_5:latest # Match the output of your BuildConfig
           ports:
             - containerPort: 8080  # Flask app default port (adjust if different)
           resources:
@@ -37,7 +37,7 @@ spec:
   output:
     to:
       kind: DockerImage
-      name: '192.168.117.185:8087/mlops/tf/mlops/tf/fianl_1:latest'
+      name: '192.168.117.185:8087/mlops/tf/final_5:latest'
   source:
     type: Binary
     binary: {}
