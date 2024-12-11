@@ -52,6 +52,7 @@ spec:
     targetPort: 8080              # The service port to route traffic to
   tls:
     termination: edge   
+    insecureEdgeTerminationPolicy: Redirect
 ---
 
 kind: BuildConfig
