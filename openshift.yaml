@@ -35,11 +35,14 @@ spec:
   selector:
     app: blue-api
   ports:
-    - protocol: TCP
+    - name: 8080
+      protocol: TCP
       port: 80            # INSERT IT IF ANY
       targetPort: 8080    # MAP WITH PODS EXPOSE
-      port: 9090            # INSERT IT IF ANY
-      targetPort: 8000    # MAP WITH PODS EXPOSE
+    - name: 8000
+      protocol: TCP
+      port: 80            # INSERT IT IF ANY
+      targetPort: 8080    # MAP WITH PODS EXPOSE
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
