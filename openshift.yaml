@@ -17,6 +17,7 @@ spec:
         - name: blue-api
           image: 192.168.117.185:8087/mlops/tf/final_5:latest # Match the output of your BuildConfig
           ports:
+            - containerPort: 8000  # Flask app default port (adjust if different)
             - containerPort: 8080  # Flask app default port (adjust if different)
           resources:
             limits:
@@ -37,7 +38,8 @@ spec:
     - protocol: TCP
       port: 80            # INSERT IT IF ANY
       targetPort: 8080    # MAP WITH PODS EXPOSE
-
+      port: 9090            # INSERT IT IF ANY
+      targetPort: 8000    # MAP WITH PODS EXPOSE
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
