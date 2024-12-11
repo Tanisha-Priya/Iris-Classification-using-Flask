@@ -25,7 +25,33 @@ spec:
             requests:
               cpu: "1"
               memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-api
+spec:
+  selector:
+    app: blue-api
+  ports:
+    - protocol: TCP
+      port: 80            # INSERT IT IF ANY
+      targetPort: 8080    # MAP WITH PODS EXPOSE
 
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: blue-api
+
+spec:
+  to:
+    kind: Service
+    name: blue-api        # Reference to the service
+  port:
+    targetPort: 8080              # The service port to route traffic to
+  tls:
+    termination: edge   
 ---
 
 kind: BuildConfig
