@@ -8,8 +8,8 @@ from prometheus_client import start_http_server, Gauge
 import os
 
 current = os.getcwd()
-project = os.listdir()[0]
-request_path = os.path.join(current, project)
+#project = os.listdir()[0]
+request_path = os.path.join(current)
 os.chdir(request_path)
 
 accuracy_gauge = Gauge('model_accuracy_ratio', 'Accuracy ratio of the model')
