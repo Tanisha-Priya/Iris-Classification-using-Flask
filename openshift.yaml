@@ -37,7 +37,7 @@ spec:
   ports:
     - name: flask
       protocol: TCP
-      port: 80            # INSERT IT IF ANY
+      port: 808            # INSERT IT IF ANY
       targetPort: 8080    # MAP WITH PODS EXPOSE
     - name: metrics
       protocol: TCP
@@ -54,7 +54,7 @@ spec:
     kind: Service
     name: blue-api        # Reference to the service
   port:
-    targetPort: metrics              # The service port to route traffic to
+    targetPort: flask              # The service port to route traffic to
   tls:
     termination: edge   
     insecureEdgeTerminationPolicy: Redirect
