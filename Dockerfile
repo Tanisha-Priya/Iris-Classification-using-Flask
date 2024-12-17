@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.6
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir --proxy http://proxy365.sacombank.com:1985 -r requirements.txt
 COPY . /opt/
