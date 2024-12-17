@@ -48,7 +48,6 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: blue-api
-
 spec:
   to:
     kind: Service
@@ -58,7 +57,7 @@ spec:
   tls:
     termination: edge   
     insecureEdgeTerminationPolicy: Redirect
---
+---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
