@@ -59,7 +59,6 @@ spec:
     termination: edge   
     insecureEdgeTerminationPolicy: Redirect
 ---
-
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
