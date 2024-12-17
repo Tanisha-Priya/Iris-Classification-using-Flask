@@ -58,6 +58,20 @@ spec:
   tls:
     termination: edge   
     insecureEdgeTerminationPolicy: Redirect
+--
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: blue-metrics
+spec:
+  to:
+    kind: Service
+    name: blue-api        # Reference to the service
+  port:
+    targetPort: metrics              # The service port to route traffic to
+  tls:
+    termination: edge   
+    insecureEdgeTerminationPolicy: Redirect
 ---
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
