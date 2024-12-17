@@ -42,7 +42,7 @@ spec:
     - name: 8000
       protocol: TCP
       port: 80            # INSERT IT IF ANY
-      targetPort: 8080    # MAP WITH PODS EXPOSE
+      targetPort: 8000    # MAP WITH PODS EXPOSE
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
