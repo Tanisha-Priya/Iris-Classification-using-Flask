@@ -4,5 +4,5 @@ RUN pip install --no-cache-dir --proxy http://proxy365.sacombank.com:1985 -r req
 COPY . /opt/
 WORKDIR /opt
 EXPOSE 8080
-EXPOSE 8000
+#EXPOSE 8000
 CMD  ["python","app.py"]
