@@ -22,7 +22,7 @@ spec:
         - name: blue-api
           image: 192.168.117.185:8087/mlops/tf/final_5:latest # Match the output of your BuildConfig
           ports:
-            - containerPort: 8000  # Flask app default port (adjust if different)
+            #- containerPort: 8000  # Flask app default port (adjust if different)
             - containerPort: 8080  # Flask app default port (adjust if different)
           resources:
             limits:
