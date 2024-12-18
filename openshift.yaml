@@ -13,10 +13,10 @@ spec:
     metadata:
       labels:
         app: blue-api
-          annotations:
-            prometheus.io/scrape: "true"
-            prometheus.io/path: "/metrics"    # Path to scrape metrics (default is /metrics)
-            prometheus.io/port: "8000" 
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"    # Path to scrape metrics (default is /metrics)
+        prometheus.io/port: "8000" 
     spec:
       containers:
         - name: blue-api
