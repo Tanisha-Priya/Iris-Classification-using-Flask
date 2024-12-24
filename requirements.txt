@@ -5,4 +5,5 @@ Flask-JWT==0.3.2
 flask-wtf
 joblib==0.14.0
 WTForms==2.2.1
-prometheus-client
+prometheus-client\
+scikit-learn==1.2.2
