@@ -100,10 +100,10 @@ def prediction():
 
 @app.route('/metrics')
 def metrics():
-    from prometheus_client import generate_latest
-    return generate_latest()
+    #from prometheus_client import generate_latest
+    #return generate_latest()
+    return start_http_server(8000)
 
 print("---------------PREDICT---PORT SUCCESS----------------")
 if __name__ == '__main__':
-    #start_http_server(8000)
     app.run(host='0.0.0.0',port=8080)
