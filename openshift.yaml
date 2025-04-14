@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-api
+  namespace: mlrun
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-api
+  template:
+    metadata:
+      labels:
+        app: blue-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"    # Path to scrape metrics (default is /metrics)
+        prometheus.io/port: "8080" 
+    spec:
+      containers:
+        - name: blue-api
+          image: 192.168.117.185:8087/mlops/tf/final_5:latest # Match the output of your BuildConfig
+          ports:
+            #- containerPort: 8000  # Flask app default port (adjust if different)
+            - containerPort: 8080  # Flask app default port (adjust if different)
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: "1"
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-api
+spec:
+  selector:
+    app: blue-api
+  ports:
+    - name: flask
+      protocol: TCP
+      port: 808            # INSERT IT IF ANY
+      targetPort: 8080    # MAP WITH PODS EXPOSE
+    - name: metrics
+      protocol: TCP
+      port: 80            # INSERT IT IF ANY
+      targetPort: 8000    # MAP WITH PODS EXPOSE
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: blue-api
+spec:
+  to:
+    kind: Service
+    name: blue-api        # Reference to the service
+  port:
+    targetPort: flask              # The service port to route traffic to
+  tls:
+    termination: edge   
+    insecureEdgeTerminationPolicy: Redirect
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: blue-metrics
+spec:
+  to:
+    kind: Service
+    name: blue-api        # Reference to the service
+  port:
+    targetPort: metrics              # The service port to route traffic to
+  tls:
+    termination: edge   
+    insecureEdgeTerminationPolicy: Redirect
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: blue-api 
+  namespace: mlrun
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: '192.168.117.185:8087/mlops/tf/final_5:latest'
+  source:
+    type: Binary
+    binary: {}
+  resources:
+    limits:
+      cpu: "1"
+      memory: 1Gi
+    requests:
+      cpu: "1"
+      memory: 1Gi
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
