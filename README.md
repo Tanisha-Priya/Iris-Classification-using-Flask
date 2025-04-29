@@ -6,6 +6,17 @@ This is a simple Iris flower classification model deployment project using a Fla
 The app accepts four flower measurements as input and returns the predicted Iris species (Setosa, Versicolor, Virginica) using a machine learning model.
 
 ---
+### 🔡 Input Web UI
+
+![Input Form](images/input_form.png "Input Form")
+
+---
+
+### 📊 Prediction Output
+
+![Prediction Result](images/prediction_result.png "Prediction Result")
+
+
 
 ## 🚀 Run on Docker (No Build Required)
 
